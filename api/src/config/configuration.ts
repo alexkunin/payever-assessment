@@ -8,4 +8,7 @@ export default () => ({
     user: process.env.RABBITMQ_USER,
     password: process.env.RABBITMQ_PASS,
   },
+  smtp: {
+    uri: process.env.SMTP_URI,
+  },
 });

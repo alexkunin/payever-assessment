@@ -7,6 +7,8 @@ import { AppService } from './app.service';
 import { AvatarService } from './avatar.service';
 import configuration from './config/configuration';
 import { DummyQueueEchoService } from './dummyqueueecho.service';
+import { EmailService } from './email.service';
+import { EmailNotificationsService } from './emailnotifications.service';
 import { QueueNotificationsService } from './queuenotifications.service';
 import { RabbitMQService } from './rabbitmq.service';
 import { ReqResService } from './reqres.service';
@@ -27,8 +29,10 @@ import { UsersController } from './users.controller';
     ReqResService,
     AvatarService,
     QueueNotificationsService,
+    EmailNotificationsService,
     RabbitMQService,
     DummyQueueEchoService,
+    EmailService,
   ],
 })
 export class AppModule {}

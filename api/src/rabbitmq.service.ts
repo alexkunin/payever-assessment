@@ -7,8 +7,7 @@ export class RabbitMQService {
   private connection: Connection | null = null;
   private channel: Channel | null = null;
 
-  constructor(private readonly configService: ConfigService) {
-  }
+  constructor(private readonly configService: ConfigService) {}
 
   private get host(): string | undefined {
     return this.configService.get<string>('rabbitmq.host');
@@ -23,7 +22,7 @@ export class RabbitMQService {
   }
 
   private get url(): string {
-    return `amqp://${ this.user }:${ this.password }@${ this.host }:5672`;
+    return `amqp://${this.user}:${this.password}@${this.host}:5672`;
   }
 
   private async getConnection(): Promise<Connection> {
@@ -52,7 +51,10 @@ export class RabbitMQService {
     channel.sendToQueue(queue, Buffer.from(message));
   }
 
-  async subscribe(queue: string, callback: (message: string) => void): Promise<void> {
+  async subscribe(
+    queue: string,
+    callback: (message: string) => void,
+  ): Promise<void> {
     const channel = await this.getChannel();
 
     await channel.assertQueue(queue, {
@@ -67,7 +69,7 @@ export class RabbitMQService {
     });
   }
 
-  onApplicationShutdown(signal: string) {
+  onApplicationShutdown(/*signal: string*/) {
     if (this.channel !== null) {
       this.channel.close();
     }
