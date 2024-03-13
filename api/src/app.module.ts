@@ -3,8 +3,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AvatarService } from './avatar.service';
 import configuration from './config/configuration';
 import { DummyQueueEchoService } from './dummyqueueecho.service';
@@ -35,9 +33,8 @@ import { UsersController } from './users.controller';
       inject: [ConfigService],
     }),
   ],
-  controllers: [AppController, UsersController, UserController],
+  controllers: [UsersController, UserController],
   providers: [
-    AppService,
     ReqResService,
     AvatarService,
     QueueNotificationsService,
