@@ -39,7 +39,7 @@ export class UserController {
       .pipe(map((response) => response.avatar));
 
     return url$.pipe(
-      switchMap((url) => this.avatarService.getAvatar(url)),
+      switchMap((url) => this.avatarService.getAvatar(id, url)),
       catchError((error) => {
         if (error instanceof AxiosError && error.response?.status === 404) {
           throw new NotFoundException();
@@ -52,6 +52,7 @@ export class UserController {
 
   @Delete(':id/avatar')
   deleteAvatar(@Param('id', ParseIntPipe) id: number): string {
-    return JSON.stringify({ id, type: 'avatar', action: 'delete' });
+    this.avatarService.deleteAvatar(id);
+    return JSON.stringify({ success: true });
   }
 }

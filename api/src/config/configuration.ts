@@ -11,4 +11,8 @@ export default () => ({
   smtp: {
     uri: process.env.SMTP_URI,
   },
+  avatar: {
+    timeout: parseInt(process.env.AVATAR_TIMEOUT ?? '', 10) || 5000,
+    path: process.env.AVATAR_PATH,
+  },
 });
