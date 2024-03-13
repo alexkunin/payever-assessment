@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectConnection } from '@nestjs/mongoose';
+import { createHash } from 'crypto';
 import { existsSync, unlinkSync, writeFileSync } from 'fs';
 import { Connection } from 'mongoose';
 import { join } from 'path';
@@ -81,6 +82,7 @@ export class AvatarService {
     await this.mongo.collection('avatars').insertOne({
       userId,
       avatar: buffer.toString('base64'),
+      hash: createHash('sha256').update(buffer).digest('hex'),
     });
   }
 
