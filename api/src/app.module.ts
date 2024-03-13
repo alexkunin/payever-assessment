@@ -1,7 +1,8 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AvatarService } from './avatar.service';
@@ -22,6 +23,17 @@ import { UsersController } from './users.controller';
       load: [configuration],
     }),
     EventEmitterModule.forRoot(),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        const user = configService.get('mongo.user');
+        const pass = configService.get('mongo.pass');
+        const host = configService.get('mongo.host');
+        const uri = `mongodb://${user}:${pass}@${host}/`;
+        return { uri };
+      },
+      inject: [ConfigService],
+    }),
   ],
   controllers: [AppController, UsersController, UserController],
   providers: [

@@ -15,4 +15,9 @@ export default () => ({
     timeout: parseInt(process.env.AVATAR_TIMEOUT ?? '', 10) || 5000,
     path: process.env.AVATAR_PATH,
   },
+  mongo: {
+    user: process.env.MONGO_USER,
+    pass: process.env.MONGO_PASS,
+    host: process.env.MONGO_HOST,
+  },
 });

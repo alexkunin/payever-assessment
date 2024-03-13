@@ -27,7 +27,6 @@ export class RabbitMQService {
 
   private async getConnection(): Promise<Connection> {
     if (this.connection === null) {
-      console.log(this.url);
       this.connection = await connect(this.url);
     }
     return this.connection;
