@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AvatarService } from './avatar.service';
 import configuration from './config/configuration';
 import { ReqResService } from './reqres.service';
 import { UserController } from './user.controller';
@@ -16,6 +17,6 @@ import { UsersController } from './users.controller';
     }),
   ],
   controllers: [AppController, UsersController, UserController],
-  providers: [AppService, ReqResService],
+  providers: [AppService, ReqResService, AvatarService],
 })
 export class AppModule {}

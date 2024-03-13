@@ -26,4 +26,10 @@ export class ReqResService {
       }>(`${this.baseUrl}/users/${id}`, { timeout: this.timeout })
       .pipe(map((data) => data.data.data));
   }
+
+  createUser(user: UserDto): Observable<void> {
+    return this.httpService
+      .post<UserDto>(`${this.baseUrl}/users`, user, { timeout: this.timeout })
+      .pipe(map(() => void 0));
+  }
 }
