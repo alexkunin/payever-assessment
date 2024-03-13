@@ -1,0 +1,8 @@
+version: "3"
+
+services: 
+  rabbit:
+    image: rabbitmq:3.13
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
